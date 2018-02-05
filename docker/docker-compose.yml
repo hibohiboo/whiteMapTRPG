@@ -1,0 +1,33 @@
+version: '3'
+services:
+  # firebase cli
+  firebase:
+    build: ./firebase
+    env_file: .env
+    volumes:
+      - ../app/public:/app/public
+      # - ../app/.firebaserc:/app/.firebaserc
+      # - ../app/firebase.json:/app/firebase.json
+    ports:
+      - 5000:5000
+      - 9005:9005
+    command: [firebase, serve, -p, "5000", -o, "0.0.0.0", --token, "$FIREBASE_TOKEN"]
+
+  # cssプリプロセッサ
+  precss:
+    build: ./precss
+    volumes:
+      - ./precss/app.js:/app/app.js
+      # - ../htdocs/css:/app/src
+      # - ../app/public/assets/css:/app/dest
+    command: [npm, run, run]
+
+# htmlテンプレートエンジン
+  pug:
+    build: ./pug
+    volumes:
+      - ../htdocs/pug:/app/src
+      - ../app/public/lost:/app/dist
+    environment:
+      - SHELL=/bin/bash
+    command: [npm, run, watch]
