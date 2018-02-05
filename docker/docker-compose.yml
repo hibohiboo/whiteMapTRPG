@@ -6,8 +6,8 @@ services:
     env_file: .env
     volumes:
       - ../app/public:/app/public
-      # - ../app/.firebaserc:/app/.firebaserc
-      # - ../app/firebase.json:/app/firebase.json
+      - ./config/firebase/.firebaserc:/app/.firebaserc
+      - ./config/firebase/firebase.json:/app/firebase.json
     ports:
       - 5000:5000
       - 9005:9005
