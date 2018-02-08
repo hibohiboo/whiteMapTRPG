@@ -1,0 +1,54 @@
+
+// ヘッダー
+header{
+  position: absolute; // 重ねる
+  top:0;
+  left:0;
+  z-index: 100; // 一番上に重ねる
+  width: 100%;  // 画面の横幅いっぱいに表示
+  background-color: rgba(255,255,255,0.9); // 半透明の白色に 
+}
+
+// ヒーローイメージを表示しないページ用の設定
+.nohero{
+  header{
+    position: static;
+    border-bottom: solid 1px var(--gray-color);
+  }
+} 
+
+// ヘッダを固定するページ用の設定
+.head-fixed ,
+.nohero  .head-fixed {
+  position: fixed;
+}
+.nohero .head-fixed  + *{
+  margin-top: 70px; //ヒーローイメージがないページだと画面上部に固定したヘッダが記事にかさなるのでヘッダの下に余白を挿入する
+}
+// ヘッダA: サイト名
+.headA {
+  display: inline-block;
+  line-height: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: var(--main-color);
+  color: var(--text-bright-color);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+// ヘッダB: ナビゲーションメニュー
+.headB{
+  // リストマークの解除をフッタと合わせる
+  ul{
+    @extend .footB ul
+  }
+  a {
+    @extend .footB a
+    padding: 15px; // 各リンクを大きくするため余白サイズを大きくする
+  }
+  a:hover {
+    @extend .footB a:hover
+  }
+}

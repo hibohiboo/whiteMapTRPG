@@ -1,0 +1,31 @@
+
+// ルールについて
+.conD {
+  p {
+    @extend .conC p
+  }
+  h2 {
+    @extend .conC h2
+  }
+  .image {
+    height: 400px;
+    max-width: 490px;
+    background-image: url(../images/takibi.png);
+    background-position: center;
+    background-size: cover;
+  }
+  .text {
+    padding: 20px;
+  }
+  .container{
+    padding-top: 2px;
+  }
+    // リンクをボタン風にする
+  a{
+    @extend .conC a
+    border: solid 3px var(--gray-color);
+  }
+  a:hover{
+    @extend .conC a:hover
+  }
+}

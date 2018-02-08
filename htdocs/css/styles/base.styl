@@ -1,0 +1,116 @@
+@import 'styles/var';
+// 基本設定：フォントサイズ
+// スマートフォン向け
+@media (max-width: 599px) {
+  :root {
+    font-size: 14px;  
+  }
+}
+
+// タブレット向け
+@media (min-width: 600px) and (max-width: 799px) {
+  :root {
+    font-size: 16px;  
+  }
+}
+
+// PC向け
+@media (min-width: 800px) {
+  :root {
+    font-size: 18px;  
+  }
+}
+
+
+//- font-awasomeの代替テキストのチラツキを防ぐCSS
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// 基本設定:ページ全体
+body {
+  margin: 0; // 画像を横幅いっぱいに表示するため、余白を削除。
+  font-family: 'メイリオ',                 // windows
+               'Hiragino Kaku Gothic Pro', // OS X, iOS 
+                sans-serif;                // その他
+  font-size: 16px; // 基本フォントサイズをブラウザ標準のものに指定
+}
+
+// extend用 コンテナの幅設定
+.container-large-width{
+  max-width: 1000px;
+  max-width: var(--large-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+.container-middle-width {
+  @extend .container-large-width
+  max-width: 800px;
+  max-width: var(--middle-width);
+}
+
+// 改行させない
+.nowrap{
+  white-space: nowrap;
+}
+
+// レスポンシブルなテーブル設定
+table.responsive,
+table.chart // チャートでレスポンシブルにしないテーブルも同デザイン
+{
+  border-collapse: collapse;
+  border: 1px solid var(--gray-color);
+  margin-bottom: 5px;
+  margin-top: 5px;
+  caption {
+    background-color: var(--main-color);
+    color: var(--text-bright-color);
+  }
+  th, td {
+    border: 1px solid var(--gray-color);
+    padding: 10px;
+  }
+  // ヘッダと最初のtdは改行しない
+  th, td:first-child{
+    white-space: nowrap;
+  }
+}
+// 狭い幅では縦表示
+@media (max-width: 767px) {
+  table{
+    &.responsive {
+      border-collapse: separate;
+      border-spacing: 0  20px;
+      thead {
+        display: none;
+      }
+      tr {
+       // background-color: #f6f6f6;
+      }
+      td {
+        border: none;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        border-bottom: 1px solid var(--gray-color);
+        &.txt-center{
+          text-align: center;
+        }
+      }
+      td:before {
+        content: attr(data-title) " ";
+      }
+      .mobile-hidden
+      {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+
+//##### 小さい画面用設定 #####
+// ブレークポイント：iPadの画面の横幅 = 768px - 1px
+@media(max-width: 767px) {
+  header{
+    .container-small{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  // トグルボタンのデザインを変更
+  .headC{
+    margin-right: 10px;
+    padding:0;
+    border: none;
+    outline: none;
+    background:none;
+    font-size: 28px;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  .headC:hover {
+    opacity: 0.3;
+  }
+  // 小さな画面ではナビゲーションメニューは表示されない
+  .headB {
+    display: none;
+  }
+  // 小さな画面ではリプレイの柱は表示しない
+  .reply{
+    .container{
+      @extend .content .container
+    }
+    img {
+      max-width: 100%;  // 横幅に合わせて自動縮小するが、拡大はしない
+    }
+    .pillar{
+      display: none;  
+    }
+  } 
+}

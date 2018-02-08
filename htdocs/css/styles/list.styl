@@ -1,0 +1,175 @@
+// ##### List ページ #####
+
+// カード型 画像上 テキスト下
+.listA {
+
+  // 画像の横幅に関係なく一定のフォントサイズで表示
+  h2 {
+    font-size: 18px;
+  }
+  // 見出しよりも薄く表示
+  p {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+  .image{
+    min-height: 250px;
+    background-position: center;
+    background-size: auto; // cover -> auto
+                           // auto  背景画像を画像固有の比率が維持される方向に拡大縮小します。
+                           // cover 背景画像が背景配置領域と同じか大きな幅と高さを持つことが保証される範囲で、なるべく小さくすべきであることを示します。
+                           // contain このキーワードは、背景画像が背景配置領域と同じか小さな幅と高さを持つことが保証される範囲で、なるべく大きくすべきであることを示します。cover;  
+    background-repeat: no-repeat; // autoに変えてno-repeatに変えることで画像をそのまま表示
+  }
+  // カード型のデザインにする
+  a {
+    margin:10px;
+    display: block;
+    border: solid 1px var(--gray-color);
+    color:inherit;
+    text-decoration: none;
+    flex: 1; // 横に並んだ枠の高さをそろえる
+  }
+  a:hover{
+    opacity: 0.8;
+  }
+  .text{
+    margin: 10px;  
+  }
+  // メディアクエリを使用せず、フレキシブルボックスレイアウトの機能で
+  // 並べ方を決定
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    // 横幅の最大値を指定
+    @extend .container-large-width
+    margin-top: 30px;   // 上下の余白を調整
+    margin-bottom: 30px;
+  }
+  article{
+    flex: 1 1 300px; // 300pxの横幅を基本に必要に応じて伸縮
+    display: flex; // article内のaの高さをそろえるためにフレキシブルボックスレイアウトの機能を利用
+  }
+}
+
+// カード型 画像横 テキスト左右
+.listB {
+  @extend .listA 
+  .image {
+    flex: 2;
+  }
+  .text{
+    flex: 3;
+  }
+  a{
+    display: flex;
+  }
+  article{
+    flex: 1 1 384px; // 768pxで２段組みとなるバランスがちょうどよい横幅
+  }
+}
+// 小さいリストB用の設定
+@media(max-width: 384px) {
+  .listB{
+    .image{
+      //flex: 1;
+    }
+    p {
+      //display: none; // 384px以下では文章を非表示
+    }
+    // 小さいリストでは縦並びにする
+    a {
+      display: block;
+    }
+  }
+}
+
+// 記事一覧C 画像に重ねる
+.listC {
+  @extend .listA
+  a{
+    position: relative;
+    background-color: currentColor; // 背景色を暗くする
+    margin: 2px; // 敷き詰めた時の余白設定
+  }
+  .text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    color: var(--text-bright-color);// 背景色が暗いので白抜きにする
+  }
+  h2 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+  .image{
+    opacity: 0.6; // 半透明な画像とaの黒色を重ねてトーンを落としたように見せる
+    min-height: 250px; // 1000px以上の時に4段組にする
+  }
+  // 1000px以上の時4段組みにする
+  article{
+    flex: 1 1 250px;
+  }
+  .container {
+    max-width: none; // 敷き詰める
+  }
+}
+
+// 1000px以上の時4段組を維持する
+@media(min-width: 1000px){
+  .listC{
+    article {
+      flex: 1 1 25%;
+    }
+  }
+}
+
+// 関連メニューにする. 1,2,4と段組みを切り替える
+.related {
+  // 背景に色をつける
+  background-color: var(--main-color);
+  padding: 30px 0;
+  ul{
+    @extend .listA .container 
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    @extend .listA article
+    flex: 1 1 100%; // 1段組みのレイアウトにする
+  }
+  a{
+    @extend .listA a
+    // 背景色をつけた時、リンクになっている部分を際立たせるために少し明るい色にする
+    background-color: rgba(255, 255, 255, 0.5); 
+  }
+  a:hover{
+    @extend .listA a:hover
+  }
+  .image{
+    @extend .listA .image
+    //min-height: 100px; // 少しコンパクトにする
+  }
+  .text{
+    @extend .listA .text
+  }
+  h2{
+    @extend .listA h2
+  }
+  p{
+    @extend .listA p
+  }
+}
+@media(min-width: 600px) and (max-width: 899px){
+  .related li{
+    flex: 1 1 50%; //2段組み
+  }
+}
+@media(min-width: 900px){
+  .related li {
+    flex: 1 1 25%; //4段組み
+  }
+}

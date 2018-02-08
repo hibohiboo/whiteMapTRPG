@@ -1,0 +1,117 @@
+
+// フッター
+footer {
+  color: #fff;
+  color: var(--text-bright-color);
+  background-color: var(--dark-color);
+
+  .container{
+    padding: 40px 20px;
+  }
+  p {
+    color: inherit;
+  }
+}
+// フッターA サイト情報
+.footA{
+  margin-bottom: 30px;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    letter-spacing: 0.2em;
+  }
+  p{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+  a {
+    color:inherit;
+    text-decoration: none;
+    text-shadow: none;
+  }
+}
+
+// フッタB サイトナビ
+.footB {
+  // 下線をつけた見出しデザイン
+  h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: solid 1px currentColor;
+    font-size: 14px;
+  }
+
+  ul {
+    // デフォルトの左の●を削除
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a{
+    // 色とサイズの調整
+    color: inherit;
+    font-size: 12px;
+    text-decoration: none;
+    // リンクを大きく広げる
+    display: block; // aの構成するボックスがテキストに合わせた横幅ではなく親要素に合わせた横幅となる
+    padding: 5px;   // 内側に余白を作ってリンクの高さを調整
+  }
+  // カーソルを重ねた時に背景色が変わるように設定
+  a:hover{
+    background-color: rgba(0,0,0,0.3);
+  }
+  // 上下間隔の調整
+  div{
+    margin-bottom: 20px;
+  }
+}
+
+// フッタC: コピーライト
+.footC {
+  font-size: 12px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif; // 欧文フォントで表示しないと©の色がおかしくなる
+
+  a {
+    color: inherit;
+  }
+}
+
+// フッタD：SNS
+.footD {
+  margin-top: 20px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+  a {
+    display: block;
+    padding: 5px;
+    color: inherit;
+    font-size: 12px;
+    text-decoration: none;
+   
+    // アイコンを丸い枠で囲む
+    padding: 0; // 枠の内側に余白を入れるとその分大きくなってしまうので削除
+    border: solid 1px currentColor;
+    width: 2em;
+    line-height: 2em;
+    border-radius: 50%;
+    text-align: center;
+
+    // 大きさと間隔の調整
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  a:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}

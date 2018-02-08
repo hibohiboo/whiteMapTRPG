@@ -1,0 +1,39 @@
+
+.conC {
+  // ブロック全体に色をつけたデザインにする
+  background-color: var(--main-color);
+  color: var(--text-bright-color);
+  //.conBの見出しとデザインに揃える
+  p {
+    @extend .conB p
+  }
+  h2 {
+    @extend .conB h2
+  }
+  .image {
+    height: 400px;
+    max-width: 500px;
+    background-image: url(../images/woo.png);
+    background-position: center;
+    background-size: cover;
+  }
+  .text {
+    padding: 20px;
+  }
+  // リンクをボタン風にする
+  a{
+    @extend .hero-header a
+    display: block;
+    width: 200px;
+  }
+  a:hover{
+    @extend .hero-header a:hover
+  }
+}
+
+.conC2{
+  @extend .conC 
+  .image {
+    background-image: url(../images/takibi.png);
+  }
+}

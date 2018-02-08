@@ -1,0 +1,104 @@
+// ##########==========##########==========##########==========##########==========##########==========
+// インクルーシブHTML + CSS参考
+// ##########==========##########==========##########==========##########==========##########==========
+
+
+// フォントサイズをパーセンテージ指定。
+// ユーザ側でフォントサイズを調整可能とする。
+html {
+  font-size: 100%; // 下の設定が認識できないブラウザのための指定。
+  font-size: 1em; //calc(1em + 1vw); // ビューポートの高さと幅に合わせてテキストサイズを調整。
+}
+
+main {
+  //max-width: 60rem; // カラム幅を60文字に。 WCAG2.0 [1.4.8 視覚的提示]では80文字以内。
+  // background-color: #eee; // アーレーン症候群の人たち向けにコントラストを控えめにする。
+}
+
+// WCAG2.0[1.4.8]より、1.5文字分の行送りを推奨
+p {
+  font-size: 1rem;
+  line-height:1.5;
+  // color: #222; //コントラストを控えめに。
+}
+
+// 改良したリンクのアンダーライン
+p a {
+  text-decoration: none;
+  text-shadow: 0.05em 0 0 #fff, -0.05em 0 0 #fff,
+               0 0.05em 0 #fff, 0 -0.05em 0 #fff,
+               0.1em 0 0 #fff, -0.1em 0 0 #fff,
+               0 0.1em 0 #fff, 0 -0.1em 0 #fff;
+  background-image: linear-gradient(to right, currentColor 0%, currentColor 100%);
+  background-repeat: repeat-x;
+  background-position: bottom 0.05em center;
+  background-size: 100% 0.05em;
+}
+
+// govで採用されているリンクのフォーカススタイル
+p a:focus {
+  outline: none;
+  background-color: #ffbf47;
+}
+
+// ##### 自動化されたアイコン #####
+// 外部リンク=相対リンクではない、かつ、現在のドメインではない
+p[href^="http"]:not(href*="lostrpg-751c1.firebaseapp.com")::after{
+  display:inline-block;
+  width: 1em;
+  height: 1em;
+  //background-image: url('');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75% auto;
+  // スクリーンリーダー用の代替テキスト
+  content: '(外部リンク)';
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 1em; // アイコンの幅
+}
+
+// ##### メニュー #####
+#nav-menu ul {
+  display: none;
+}
+
+#nav-menu:target ul {
+  display: block;
+}
+
+// ##### SVGスプライト #####
+// メニューアイコン
+button svg {
+  width: 1em;
+  height: 1em;
+}
+
+// ##### スクリーンリーダー専用 #####
+// 見えないが読み上げられる
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+// ##### スキップリンク #####
+// スキップリンクをキーボードユーザ用に用意。Tabキーで表示
+[href="#main"] {
+  position: absolute;
+  top: 0;
+  right: 100%; // 画面外に移動
+}
+// tabでフォーカスが当たったときのみ表示
+[href="#main"]:focus {
+  right: auto;
+}
+
+// ##### 印刷用スタイルシート #####
+// main以外のコンテンツは印刷時に非表示
+@media print{
+  body > *:not(main) {
+    display: none;
+  }
+}

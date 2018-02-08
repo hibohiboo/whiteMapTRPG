@@ -1,0 +1,46 @@
+
+// ##### コンテンツB:概要 ######
+.conB{
+  h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.8; // 近年のWebページは行の高さを大きく撮り文章をゆったりレイアウトする傾向
+    color: inherit;
+    opacity: 0.8;     // 見出しより若干薄い色に
+  }
+  a {
+    color:(--main-color);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .icon {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 40px;
+    width: 2em;         // アイコンを囲む円をフォントサイズの2倍の大きさにする
+    line-height: 2em;   // アイコンを円の中央に配置する
+    border-radius: 50%; // ボックスを真円にするため、角丸の半径を横幅の半分の大きさにする
+    text-align: center; // アイコンを円の中央に配置する
+    background-color: var(--icon-bk-color);
+    color: var(--icon-color);
+  }
+  .container {
+    padding-top:80px;
+    padding-bottom: 80px;
+  }
+  .text {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 60px;
+    text-align: center;  
+  }
+}

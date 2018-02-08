@@ -1,0 +1,23 @@
+extends includes/common/_layout
+//- _layout.pugをベースに作成
+
+block meta
+  //- コンテンツの種類
+  meta(name='og:type', content="website") 
+
+//- タイトルのブロック
+block title
+  //- 最初にこのページで使用する変数を読み込む
+  include includes/index/variables
+  title= title
+  
+block body
+  body
+    header
+      include includes/common/header
+    include includes/index/hero-header
+    include includes/index/overview
+    main#main
+      include includes/index/rulebook
+      include includes/index/scenario
+    include includes/common/footer

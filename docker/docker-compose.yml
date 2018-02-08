@@ -18,8 +18,8 @@ services:
     build: ./precss
     volumes:
       - ./precss/app.js:/app/app.js
-      # - ../htdocs/css:/app/src
-      # - ../app/public/assets/css:/app/dest
+      - ../htdocs/css:/app/src
+      - ../app/public/assets/css:/app/dest
     command: [npm, run, run]
 
 # htmlテンプレートエンジン
@@ -27,7 +27,7 @@ services:
     build: ./pug
     volumes:
       - ../htdocs/pug:/app/src
-      - ../app/public/lost:/app/dist
+      - ../app/public:/app/dist
     environment:
       - SHELL=/bin/bash
     command: [npm, run, watch]

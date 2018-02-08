@@ -1,0 +1,169 @@
+
+
+//##### 大きい画面用設定 #####
+// ブレークポイント：iPadの画面の横幅 = 768px
+@media(min-width:768px){
+  .hero-header {
+    h1 {
+      font-size: 115px; // フォントサイズを大きくしすぎない
+    }
+    p {
+      font-size: 24px; // キャッチフレーズを1段階大きくする
+    }
+  }
+  // 概要
+  .conB{
+    // 横に並べる設定
+    .container {
+      display: flex; //横に並べる
+      // 間延びしすぎないように最大値を指定し、中央に配置するためにmarginをautoに設定する
+      @extend .container-large-width
+    }
+
+    .text {
+      flex: 1;
+    }
+  }
+  // はじめに
+  #first {
+
+  }
+  .conC, .conC2 {
+    // 概要と横幅を揃える
+    .container {
+      @extend .conB .container 
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+    .image {
+      flex:3
+    }
+    .text {
+      flex: 2;
+      passing: 50px;
+    }
+  }
+  .conD {
+    .container {
+      @extend .conC .container 
+      flex-direction: row-reverse; // 画像とテキストの並び順を逆にする
+      padding-bottom: 40px;
+      padding-top: 40px;
+    }
+    // 画像を固定しテキストのみ幅が変わるように
+    .image {
+      flex: 0 0 490px;
+    }
+    .text{
+      flex:1;
+    }
+  }
+  // サイト情報とフッタメニューを横に並べて表示する
+  footer{
+    .container{
+      // 横幅をコンテンツと揃える
+      @extend .conB .container 
+      display: flex;
+      flex-wrap: wrap; // パーツの横幅が100%を超えた時に下に押し出して表示
+    }
+  }
+  .footA{
+    flex: 0 0 40%; // 横幅を指定して配置を調整する
+  }
+  .footB{
+    flex: 0 0 60%;
+    // 横に並べる
+    display: flex;
+    div {
+      flex: 1;
+    }
+    // 左右間隔の調整
+    div:not(:first-child) {
+      margin-left: 40px;
+    }
+  }
+  .footC{
+    flex: 0 0 100%; // カラム落ちの形で下に押し出して表示
+  }
+  // サイト名とナビゲーションメニューを左右に配置
+  header {
+    .container{
+      // 横幅をコンテンツと揃える
+      @extend .container-large-width
+      display: flex;
+      align-items: center;            // 上下方向中央揃え
+      justify-content: space-between; // 左右方向両端揃え
+    }
+  }
+  // ナビゲーションメニューを横に並べる
+  .headB {
+    // 小さい画面で非表示にしていると、画面を大きくしたときにナビゲーションメニューが非表示になるケースがある
+    // !importantで上記の問題を回避する。
+    display: block !important; 
+    ul {
+      display: flex;
+    }
+  }
+  // 大きい画面ではトグルボタンを非表示
+  .headC{
+    display: none;  
+  }
+  // history
+  .history{
+    .container{
+      @extend .conC .container 
+    }
+   .image{
+     flex:2;
+    }
+    .text{
+      flex:3;
+      padding: 50px;
+    }
+  }
+  .contact-wrap {
+    display: flex;
+  }
+  .contact {
+    flex:1;
+  }
+  .contact:first-child {
+    margin-right: 20px;
+  }
+
+  .reply{
+    small { font-size: 8pt}
+    #reply{
+      dd{
+        margin-bottom: 0.8em; //dtのmargin-bottomと同じ値が無難
+        margin-left: 8em;     //dtのmargin-leftより大きい値にする。多数行になってもdtの下に回りこまないようにする。
+        max-width:30em;
+        line-height:15pt;
+      }
+      dt{
+        clear: left;
+        float: left;  //dt,dd横並びにするため、回りこみ許可
+        margin: 0 0 0.8em;
+        width: 7em; //この幅の後に次のdd要素が来る。列の位置揃えに必要。em指定でフォントサイズ変わっても大丈夫なようにする。
+        //border-left: solid 8px #CCC; //左に罫線描画
+        padding-left: 5px;
+        text-align:right;
+      }
+    }
+    .pillar {
+      clear: both;
+      position:absolute;
+      margin-left:40em;
+      dt{
+        clear: both;
+        font-weight:bold;
+      }
+      dd{
+        margin:20px;
+        clear:both;
+        max-width:13em;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,18 @@
+extends includes/common/_layout
+block title
+  include includes/common/variables
+  include includes/rulebook/variables
+  title= title
+
+block headjs
+
+block body
+  body.nohero
+    header
+      include includes/common/header
+    main#main
+      section.content
+        .container
+          h1 終末旅行TRPG 基本ルールブック
+
+    include includes/common/footer

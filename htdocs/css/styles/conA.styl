@@ -1,0 +1,74 @@
+
+// ##### コンテンツA: ヒーローイメージ ######
+.hero-header {
+  // コンテナを中央揃え
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // 画像の設定
+  height: 100vh; // 画像をブラウザいっぱいの高さに表示。ボックスを画面と同じ高さとする。
+  min-height: 450px; // 最小限確保するボックスの大きさを定義
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)), // 半透明な黒色のグラデーション画像を重ねて表示。
+    url(../images/yun_1139.jpg);                         // 背景画像 image-urlはstylusの実行時に定義(docker/postcss/app/jsを参照)
+  background-position: center;
+  background-size: cover; // 自動的に拡大縮小・切り出し
+  // 文字の設定
+  color: #fff; // 変数に対応していないブラウザ用の設定
+  color: var(--text-bright-color); // テキストを白抜きにする
+  text-align: center;
+  
+  // .hero-header.compact
+  &.compact{
+    height: 400px;
+    min-height: 0;
+  }
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 15vw; // vwは画面の横幅を100vwとする単位
+    font-family: 'Montserrat', sans-serif; // Webフォントを使用
+    letter-spacing: 0.2em; // emはフォントサイズ = 1em
+    margin-left: 0.2em; // letter-spacingは各文字の右側に挿入される。中央揃えのバランスをとるため1文字目の左側にも余白を挿入
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 18px;
+    color: inherit; // pで設定されている色を上書き。inherit: 親要素のcolor
+  }
+  // リンクをボタン風に表示
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px; // 上下10px、左右30px
+    border: solid 3px currentColor; // currentColor: テキストと同じ色
+    border-radius: 6px;
+    background-color: #bf6a7a;
+    background-color: var(--accent-color);
+    color: var(--text-bright-color);
+    font-size: 14px;
+    text-decoration: none;
+  }
+  a:hover {
+    background-image: linear-gradient(rgba(255,255,255, 0.2), rgba(255,255,255, 0.2)); // 半透明な白色の画像を重ねて明るくする
+  }
+
+  .yun_c{
+    text-align: right;
+    position: absolute;
+    bottom:0;
+    right:0;
+    a {
+      display: block;
+      margin-top: 0;
+      padding: 0; // 上下10px、左右30px
+      border: none; // currentColor: テキストと同じ色
+      background-color: rgba(0,0,0,0);
+      color: var(--text-bright-color);
+      font-size: 12px;
+      text-decoration: none;
+    }
+  }
+}
