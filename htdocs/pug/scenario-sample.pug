@@ -1,0 +1,28 @@
+extends includes/common/_layout
+block title
+  include includes/common/variables
+  include includes/rulebook/variables
+  title= title
+
+block css
+  link(href="../assets/css/styles.css" rel="stylesheet" )
+block headjs
+
+block body
+  body.nohero
+    header
+      include includes/common/header
+    main#main
+      section.content
+        .container
+          h1 サンプルシナリオ
+          h2 嵐と焚火
+          p キャラクターメイク用のシナリオです。
+          h3 導入
+          p 洞窟に、PCが駆け込んでくる。洞窟の中は赤い炎の光で照らされていた。
+          p ▼ 焚火守
+          p 「 君もこちらに来て、服を乾かすといい」
+          p 「 外に出れなくて退屈していたんだ。話し相手になってくれないか。#[wbr] 　君の名前はなんというんだい？」
+          p 君は答えてもよいし、答えなくてもよい。
+
+    include includes/common/footer

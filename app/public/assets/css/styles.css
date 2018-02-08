@@ -504,6 +504,10 @@ header {
   font-size: 1rem;
   line-height: 2;
 }
+.content dd {
+  font-size: 1rem;
+  font-weight: normal;
+}
 .content .container,
 .reply .container {
   padding: 20px 10px;
