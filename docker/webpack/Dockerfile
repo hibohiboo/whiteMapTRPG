@@ -31,6 +31,7 @@ RUN npm i -D babel-preset-env
 RUN npm i -D babel-plugin-transform-react-jsx
 # async
 RUN npm i -D babel-preset-es2017
+
 # babelのreact用preset
 RUN npm i -D babel-preset-react
 

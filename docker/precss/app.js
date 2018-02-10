@@ -36,6 +36,7 @@ function transpile(target){
     }
     // まずはstylusでコンパイル
     stylus(str)
+    // パスをセットすることで、stylusファイル中でimportが相対パスで使えるようになる。
     .set('paths',['/app/src'])
     //.define('url', stylus.url({ paths: [__dirname + '/public'] }))
     .render( ( err, css)=>{
