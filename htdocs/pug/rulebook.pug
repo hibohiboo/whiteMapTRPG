@@ -5,7 +5,7 @@ block title
   title= title
 
 block headjs
-
+  include includes/common/chart
 block body
   body.nohero
     header
@@ -17,4 +17,14 @@ block body
           include includes/rulebook/first
           h2 キャラクター
           p あなたの分身となる旅人の作り方
+          h2 クラス
+          .listB
+            .container
+              each obj in classList
+                article
+                  a(href="#")
+                    .image(style="background-image: url('../assets/images/" + obj.image + "');")
+                    .text
+                      h2= obj.name
+                      p= obj.description
     include includes/common/footer
