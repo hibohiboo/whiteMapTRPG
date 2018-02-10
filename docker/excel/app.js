@@ -2,57 +2,82 @@ const fs = require('fs');
 const excel = require('exceljs');
 
 (async _ =>{
-  const data = await readXlsxDataAsync(`/app/data/chart.xlsx`, true);
-  console.log(data)
-  fs.writeFile('/app/dest/chart.pug', JSON.stringify(data), (err)=>console.log(err));
+  const src = `/app/data/chart.xlsx`;
+  const dest = `/app/dest/chart.pug`;
+  // エクセルの内容を取得
+  const sheets = await getSheets(src);
+
+  // 書き出すファイルの内容
+  let content = "";
+
+  // シート名を変数名、変数の値をレコードとして、pugファイルの内容を作成
+  sheets.forEach(sheet=>{
+    content += `- ${sheet.name}=${JSON.stringify(sheet.records)}\n`;
+  })
+
+  // ファイルに書き出し
+  fs.writeFile(dest, content, (err)=>console.log(err));
+  console.log(`Excel: ${src} to Pug: ${dest} `);
+
 })();
 
-function readXlsxDataAsync(filePath, columnsFromHeader){
-  return new Promise((resolve, reject) => {
-    return readXlsxData(resolve, reject, filePath, columnsFromHeader);
+/**
+ * エクセルファイルを読み込み、シートごとのデータの配列を返す
+ * @param {*} filepath 
+ * @returns シートごとのデータの配列
+ */
+async function getSheets(filepath){
+  const dataArr = [];
+  const workbook = await readWorkbookAsync(filepath);
+  workbook.eachSheet(function(worksheet, sheetId){
+    const data = getSheetData(worksheet);
+    dataArr.push(data);
   });
+  return dataArr;
 }
 
-function readXlsxData (resolve, reject, filePath, columnsFromHeader){
-  const dataArr =[];
-  const workbook = new excel.Workbook();
-  workbook.xlsx.readFile(filePath).then(()=>{
-    //最初のsheetを読み込んでいる
-    const sheet = workbook.getWorksheet('classList');
-    if(sheet == null){
-      console.log('sheet cant read')
-      return ;
+/**
+ * シートのデータを取得
+ * @param {*} sheet 
+ * @returns {name:"シート名", records: [1行目をプロパティ名としたオブジェクトの配列]}
+ */
+function getSheetData(sheet){
+  let columIndex=1;
+  let rowIndex=1;
+  const headerRow =[];
+
+  // 1行目をヘッダとする
+  while(sheet.getCell(1, columIndex).value !== null){
+    headerRow.push(sheet.getCell(1, columIndex++).value);
+  }
+  columIndex--;
+
+  const dataArr = [];
+
+  // 二行目からのデータを取り込み
+  rowIndex++;
+  while(sheet.getCell(rowIndex, 1).value !== null){
+    const data ={};
+    let col=1;
+    while(col<=columIndex){
+      data[headerRow[col-1]] =sheet.getCell(rowIndex, col++).value;
     }
-    console.log(sheet);
-    let columIndex=1;
-    let rowIndex=1;
-    if(columnsFromHeader){
-      const headerRow =[];
-      while(sheet.getCell(1, columIndex).value !== null){
-        headerRow.push(sheet.getCell(1, columIndex++).value);
-      }
-      columIndex--;
-      rowIndex++;
-      while(sheet.getCell(rowIndex, 1).value !== null){
-        const data ={};
-        let col=1;
-        while(col<=columIndex){
-          data[headerRow[col-1]] =sheet.getCell(rowIndex, col++).value;
-        }
-        dataArr.push(data);
-        rowIndex++;
-      }
-    }else{
-      while(sheet.getCell(rowIndex, 1).value !== null){
-        const data =[];
-        while(sheet.getCell(rowIndex, columIndex).value !== null){
-          data.push(sheet.getCell(rowIndex, columIndex++).value);
-        }
-        dataArr.push(data);
-        columIndex=1;
-        rowIndex++;
-      }
-    }
-    resolve(dataArr);
+    dataArr.push(data);
+    rowIndex++;
+  }
+  
+  return {name: sheet.name, records: dataArr};
+}
+
+/**
+ * エクセルファイルを非同期で読み込む
+ * @param {*} filePath 
+ */
+function readWorkbookAsync(filePath){
+  return new Promise((resolve, reject) => {
+    const workbook = new excel.Workbook();
+    workbook.xlsx.readFile(filePath).then(()=>{
+      resolve(workbook);
+    });
   });
-};
+}

@@ -38,6 +38,7 @@ services:
     build: ./excel
     volumes:
       - ./excel/app.js:/app/app.js
+      - ./excel/js:/app/js
       - ../data:/app/data
       # pugの変数定義ファイルに書き出し
       - ../htdocs/pug/includes/common:/app/dest
