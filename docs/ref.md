@@ -14,6 +14,8 @@
 [JavaScript ASTを始める最初の一歩][*8]
 [JavaScriptでASTを使ってコードをインジェクションしてみる][*9]
 [BabylonでJavaScript AST事始め][*10]
+[[Git] .gitignoreの仕様詳解][*11]
+
 
 [*0]:http://www.nechronica.com/
 [*1]:https://www.pixiv.net/novel/show.php?id=2200197#1
@@ -26,3 +28,4 @@
 [*8]:http://efcl.info/2016/03/06/ast-first-step/
 [*9]:https://qiita.com/erukiti/items/e01b1b2f904f4fb2000e
 [*10]:https://qiita.com/erukiti/items/c7bd70758b86fe7956b1
+[*11]:https://qiita.com/anqooqie/items/110957797b3d5280c44f
