@@ -41,3 +41,11 @@ services:
       - ../data:/app/data
       # pugの変数定義ファイルに書き出し
       - ../htdocs/pug/includes/common:/app/dest
+  
+  # ソースコードプロトタイピング
+  s2s:
+    build: ./s2s
+    volumes:
+      - ../htdocs/scripts/characterSheets:/app/src
+      - ./config/s2s/s2s.config.js:/app/s2s.config.js
+      - ./config/s2s/templates:/app/templates

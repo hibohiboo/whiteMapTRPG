@@ -15,7 +15,7 @@ const excel = require('exceljs');
   // シート名を変数名、変数の値をレコードとして、pugファイルの内容を作成
   sheets.forEach(sheet=>{
     content += `- ${sheet.name}=${JSON.stringify(sheet.records)}\n`;
-  })
+  });
 
   // ファイルに書き出し
   fs.writeFile(dest, content, (err)=>console.log(err));
